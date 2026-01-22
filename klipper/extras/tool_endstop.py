@@ -142,15 +142,6 @@ class EndstopRouter:
     def on_error(self, *args, **kwargs):
         raise self.printer.command_error("Cannot interact with endstop - no active tool endstop.")
 
-    def get_position_endstop(self):
-        if self.active_mcu and hasattr(self.active_mcu, 'get_position_endstop'):
-            return self.active_mcu.get_position_endstop()
-        
-        # Fallback to configured position_endstop from the stepper
-        if len(self._steppers) > 0:
-            return self._steppers[0].position_endstop
-        return 0.0
-
 
 class ToolEndstop:
     def __init__(self, config):

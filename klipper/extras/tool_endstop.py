@@ -16,6 +16,7 @@ class ToolEndstopGlobal:
         self.gcode_macro = self.printer.load_object(config, 'gcode_macro')
         self.mcu_endstop = EndstopRouter(self.printer)
 
+        logging.info("ToolEndstopGlobal: Initializing and registering chip 'tool_endstop'")
         # Register chip to expose tool_endstop:x pin
         self.printer.lookup_object('pins').register_chip('tool_endstop', self)
 
@@ -164,7 +165,7 @@ class ToolEndstop:
         self.mcu_endstop = mcu.setup_pin('endstop', pin_params)
 
         #Register with the global endstop handler
-        self.global_endstop = self.printer.load_object(config, "tool_endstop_global")
+        self.global_endstop = self.printer.load_object(config, "tool_endstop")
         self.global_endstop.add_endstop(config, self)
 
 def load_config(config):

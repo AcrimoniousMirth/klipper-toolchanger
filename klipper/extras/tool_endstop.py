@@ -145,7 +145,9 @@ class EndstopRouter:
     def get_position_endstop(self):
         if not self.active_mcu:
             # This will get picked up by the endstop, and is static
-            # Report 0 and fix up in the homing sequence
+            # Report the configured position_endstop to pass validation
+            if len(self._steppers) > 0:
+                return self._steppers[0].get_position_endstop()
             return 0.0
         return self.active_mcu.get_position_endstop()
 

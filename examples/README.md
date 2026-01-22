@@ -36,6 +36,24 @@ This is more versatile, but also more complex.
 
 Suitable for Flyig fixed gantry printers, like Voron 2.4.
 
+### Per tool X endstop
+# Tool Endstop
+
+A per-tool endstop support. Allows using tool mounted endstops for homing. Add to config.
+
+```
+[stepper_x]
+endstop_pin: tool_endstop:x
+
+[tool_endstop T0]
+tool: 0
+pin: ^PG6 # Replace with your actual pin for Tool 0
+
+[tool_endstop T1]
+tool: 1
+pin: ^PG9 # Replace with your actual pin for Tool 1
+```
+
 ## Dock location
 
 ### Fixed dock

@@ -26,6 +26,11 @@ Add the [macros.cfg](/macros.cfg) to your printer config.
 
 2025.12.25 - Use Bezier curves for rounded paths.
 2025.12.25 - Manual rail update to latest Klipper
+2026.01.22 - Added support for X endstop per toolhead (AcromoniousMirth)
+
+
+
+
 
 ## Updates that add new files
 

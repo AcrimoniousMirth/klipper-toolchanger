@@ -43,13 +43,13 @@ A per-tool endstop support. Allows using tool mounted endstops for homing. Add t
 
 ```
 [stepper_x]
-endstop_pin: tool_endstop:x
+endstop_pin: tool_x_endstop:x
 
-[tool_endstop T0]
+[tool_x_endstop T0]
 tool: 0
 pin: ^PG6 # Replace with your actual pin for Tool 0
 
-[tool_endstop T1]
+[tool_x_endstop T1]
 tool: 1
 pin: ^PG9 # Replace with your actual pin for Tool 1
 ```

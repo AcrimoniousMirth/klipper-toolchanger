@@ -139,6 +139,13 @@ class Tool:
                     "SYNC_EXTRUDER_MOTION EXTRUDER='%s' MOTION_QUEUE='%s'" % (self.extruder_stepper_name, hotend_extruder, ))
         if self.fan:
             self.toolchanger.fan_switcher.activate_fan(self.fan)
+        # Activate tool X endstop if available
+        if self.tool_number >= 0:
+            tool_x_endstop = self.printer.lookup_object('tool_x_endstop', None)
+            if tool_x_endstop:
+                gcode.run_script_from_command(
+                    "SET_ACTIVE_TOOL_X_ENDSTOP T=%d" % (self.tool_number,))
+    
     def deactivate(self):
         tool_endstop = self.printer.lookup_object('tool_endstop', None)
         if tool_endstop:
@@ -149,6 +156,8 @@ class Tool:
             hotend_extruder = toolhead.get_extruder().name
             gcode.run_script_from_command(
                 "SYNC_EXTRUDER_MOTION EXTRUDER='%s' MOTION_QUEUE=" % (self.extruder_stepper_name,))
+        # Note: X endstop deactivation handled by the next tool activation or can be manually cleared
+
 
     def _config_get(self, config, name, default_value):
         return config.get(name, self.toolchanger.config.get(name, default_value))

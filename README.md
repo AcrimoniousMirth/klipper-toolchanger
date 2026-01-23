@@ -44,5 +44,6 @@ bash ~/klipper-toolchanger/install.sh
 
 * [Toolchanger](/toolchanger.md) - tool management support.
 * [Tool probe](/tool_probe.md) - per tool Z probe.
+* [Tool X endstop](klipper/extras/tool_x_endstop.py) - per tool X endstop for toolchanger setups.
 * [Rounded path](/rounded_path.md) - rounds the travel path corners for fast non-print moves.
 * [Tools calibrate](/tools_calibrate.md) - support for contact based XYZ offset calibration probes.

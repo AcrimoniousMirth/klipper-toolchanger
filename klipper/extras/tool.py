@@ -122,6 +122,9 @@ class Tool:
             gcode.register_command(name, func, desc=desc)
 
     def activate(self):
+        tool_endstop = self.printer.lookup_object('tool_endstop', None)
+        if tool_endstop and self.tool_number in tool_endstop.tool_endstops:
+            tool_endstop.set_active_endstop(tool_endstop.tool_endstops[self.tool_number])
         toolhead = self.printer.lookup_object('toolhead')
         gcode = self.printer.lookup_object('gcode')
         hotend_extruder = toolhead.get_extruder().name
@@ -137,6 +140,9 @@ class Tool:
         if self.fan:
             self.toolchanger.fan_switcher.activate_fan(self.fan)
     def deactivate(self):
+        tool_endstop = self.printer.lookup_object('tool_endstop', None)
+        if tool_endstop:
+            tool_endstop.set_active_endstop(None)
         if self.extruder_stepper:
             toolhead = self.printer.lookup_object('toolhead')
             gcode = self.printer.lookup_object('gcode')
